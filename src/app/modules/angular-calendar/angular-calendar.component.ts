@@ -23,10 +23,9 @@ import {
   CalendarEventTimesChangedEvent,
   CalendarModule,
   CalendarView,
-  DateAdapter,
 } from 'angular-calendar';
-import { EventColor } from 'calendar-utils';
-import { NgSwitch } from '@angular/common';
+import { JsonPipe, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
 const colors = {
   red: {
@@ -46,7 +45,16 @@ const colors = {
 @Component({
   selector: 'app-angular-calendar',
   standalone: true,
-  imports: [NzCollapseModule, NgSwitch, NgbModalModule, CalendarModule],
+  imports: [
+    NzCollapseModule,
+    NgSwitch,
+    NgSwitchCase,
+    NgbModalModule,
+    CalendarModule,
+    NgIf,
+    NzIconModule,
+    JsonPipe
+  ],
   templateUrl: './angular-calendar.component.html',
   styleUrl: './angular-calendar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -56,12 +64,13 @@ export class AngularCalendarComponent {
 
   @ViewChild('modalContent', { static: true }) modalContent!: TemplateRef<any>;
 
-  view: CalendarView = CalendarView.Month;
+  view: CalendarView = CalendarView.Month
 
   CalendarView = CalendarView;
 
   viewDate: Date = new Date();
 
+  // dla modalu bootstrapoowego
   modalData!: {
     action: string;
     event: CalendarEvent;
@@ -69,14 +78,15 @@ export class AngularCalendarComponent {
 
   actions: CalendarEventAction[] = [
     {
-      label: '<i class="fas fa-fw fa-pencil-alt"></i>',
+      label: "<span>Edytuj</span>",
       a11yLabel: 'Edit',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.handleEvent('Edited', event);
       },
     },
     {
-      label: '<i class="fas fa-fw fa-trash-alt"></i>',
+      // V jedynie string, nie da rady templatki
+      label: "<span>Usuń</span>",
       a11yLabel: 'Delete',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter((iEvent) => iEvent !== event);
@@ -132,6 +142,7 @@ export class AngularCalendarComponent {
 
   constructor(private modal: NgbModal) {}
 
+  // kliknięta data
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
@@ -144,6 +155,8 @@ export class AngularCalendarComponent {
       }
       this.viewDate = date;
     }
+    console.log(date)
+    // miejsce na otwarcie modalu dodającego z wybraną klikniętą datą
   }
 
   eventTimesChanged({
@@ -197,4 +210,8 @@ export class AngularCalendarComponent {
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
+
+  // dayClicked() {
+
+  // }
 }

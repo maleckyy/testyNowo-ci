@@ -3,3 +3,28 @@
 .calendar-wrapper {
   padding: $page-padding;
 }
+
+::ng-deep .cal-month-view .cal-open-day-events {
+  background-color: rgba(255, 223, 229, 0.185);
+  box-shadow: inset 0 0 15px 0 rgba(194, 1, 253, 0.062);
+  color: black;
+}
+
+// ::ng-deep .cal-event-action {
+//   margin-left: 6px;
+//   color: black;
+//   font-size: 14px;
+//   text-transform: uppercase;
+//   text-decoration: none;
+//   font-weight: 700;
+// }
+
+// bagde z iloscia eventow danego dnia
+::ng-deep .cal-month-view .cal-day-badge {
+  background-color: pink;
+  color: black;
+}
+
+::ng-deep .cal-month-view .cal-day-cell.cal-today {
+  background-color: rgba(255, 87, 115, 0.082);
+}

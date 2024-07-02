@@ -1,13 +1,25 @@
 <div class="calendar-wrapper">
-  <nz-collapse>
+  <nz-collapse [nzBordered]="false">
     <nz-collapse-panel nzHeader="Kroki">
       <p>{{ "ng add @ng-bootstrap/ng-bootstrap"}}</p>
-      <p>1 npm i angular-calendar</p>
-      <p>2 npm install date-fns --save</p>
+      <p>npm i angular-calendar</p>
+      <p>npm i calendar-utils</p>
+      <p>npm install date-fns --save</p>
+    </nz-collapse-panel>
+    <nz-collapse-panel nzHeader="ważne">
+      <p>{{ 'app-config > importProvidersFrom(CalendarModule.forRoot({provide: DateAdapter, useFactory: adapterFactory}))' }}</p>
+    </nz-collapse-panel>
+    <nz-collapse-panel nzHeader="doksy">
+      <p><a href="https://mattlewis-github.com/angular-calendar/#/kitchen-sink" target="_blank">DEMO + KOD</a></p>
+      <p><a href="https://github.com/mattlewis92/angular-calendar#readme" target="_blank">GIT</a></p>
+      <p><a href="https://mattlewis-github.com/angular-calendar/docs/index.html#getting-started" target="_blank">DOKS</a></p>
+      <p><a href="https://www.npmjs.com/package/angular-calendar-scheduler?activeTab=readme" target="_blank">scheduler mozliwy do dodania</a></p>
     </nz-collapse-panel>
   </nz-collapse>
-  <div class="calendar">
 
+  <div class="calendar mt-4">
+
+    <!-- przyciski organizujące kalendarz -->
     <div class="row text-center">
       <div class="col-md-4">
         <div class="btn-group">
@@ -35,6 +47,13 @@
             (viewDateChange)="closeOpenMonthViewDay()"
           >
             Next
+          </div>
+          <div
+            class="btn btn-secondary"
+            mwlCalendarNextView
+            (click)="addEvent()"
+          >
+            DODAJ EVENT
           </div>
         </div>
       </div>
@@ -68,6 +87,8 @@
       </div>
     </div>
     <br />
+
+    <!-- 3 widoki kalendarza od miesiąc > tydzien > dzien -->
     <div [ngSwitch]="view">
       <mwl-calendar-month-view
         *ngSwitchCase="CalendarView.Month"
@@ -78,6 +99,7 @@
         (dayClicked)="dayClicked($event.day)"
         (eventClicked)="handleEvent('Clicked', $event.event)"
         (eventTimesChanged)="eventTimesChanged($event)"
+        [headerTemplate]="headerTemp"
       >
       </mwl-calendar-month-view>
       <mwl-calendar-week-view
@@ -99,6 +121,34 @@
       >
       </mwl-calendar-day-view>
     </div>
-
   </div>
 </div>
+
+<ng-template #headerTemp>
+  <p>custom headers dla pon wt sr</p>
+</ng-template>
+<!--
+<ng-template #cellTemp>
+  <div>hej</div>
+</ng-template> -->
+
+<!-- bootstrapowy modal do wyswietlania -->
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title">Event action occurred</h5>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      Event:
+      <pre>{{ modalData.event | json }}</pre>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="close()">
+      OK
+    </button>
+  </div>
+</ng-template>
