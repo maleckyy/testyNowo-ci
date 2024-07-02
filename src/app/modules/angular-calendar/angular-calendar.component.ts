@@ -62,6 +62,7 @@ const colors = {
 
 export class AngularCalendarComponent {
 
+  // templatka do modala
   @ViewChild('modalContent', { static: true }) modalContent!: TemplateRef<any>;
 
   // określa ktory widok jest wybrany
@@ -157,6 +158,7 @@ export class AngularCalendarComponent {
     // możliwe miejsce na otwarcie modalu dodającego z wybraną klikniętą datą
   }
 
+  // na refresh po przeniesieniu po przeciągnięciu
   eventTimesChanged({
     event,
     newStart,
@@ -208,8 +210,4 @@ export class AngularCalendarComponent {
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
   }
-
-  // dayClicked() {
-
-  // }
 }
