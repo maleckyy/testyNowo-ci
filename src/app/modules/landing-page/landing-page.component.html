@@ -1,0 +1,9 @@
+<div class="app-header">
+  @for (nav of navOptions; track nav) {
+    <div class="nav-item" (click)="navigateTo(nav.path)">
+      <span nz-icon [nzType]="nav.icon" nzTheme="outline"></span>
+      <div class="nav-title">{{ nav.label }}</div>
+    </div>
+  }
+</div>
+<router-outlet></router-outlet>
