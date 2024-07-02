@@ -57,8 +57,10 @@
           </div>
         </div>
       </div>
+
+      <!-- aktualny miesiąc, do spolszczenia -->
       <div class="col-md-4">
-        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle') }}</h3>
       </div>
       <div class="col-md-4">
         <div class="btn-group">
@@ -124,13 +126,18 @@
   </div>
 </div>
 
+<!-- temp do month -->
 <ng-template #headerTemp>
-  <p>custom headers dla pon wt sr</p>
+  <div class="custom-header">
+    <div class="header-title">Niedziela</div>
+    <div class="header-title">Poniedziałek</div>
+    <div class="header-title">Wtorek</div>
+    <div class="header-title">Środa</div>
+    <div class="header-title">Czwartek</div>
+    <div class="header-title">Piątek</div>
+    <div class="header-title">Sobota</div>
+  </div>
 </ng-template>
-<!--
-<ng-template #cellTemp>
-  <div>hej</div>
-</ng-template> -->
 
 <!-- bootstrapowy modal do wyswietlania -->
 <ng-template #modalContent let-close="close">

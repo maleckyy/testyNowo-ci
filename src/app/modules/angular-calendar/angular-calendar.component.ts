@@ -64,6 +64,7 @@ export class AngularCalendarComponent {
 
   @ViewChild('modalContent', { static: true }) modalContent!: TemplateRef<any>;
 
+  // określa ktory widok jest wybrany
   view: CalendarView = CalendarView.Month
 
   CalendarView = CalendarView;
@@ -79,7 +80,6 @@ export class AngularCalendarComponent {
   actions: CalendarEventAction[] = [
     {
       label: "<span>Edytuj</span>",
-      a11yLabel: 'Edit',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.handleEvent('Edited', event);
       },
@@ -87,7 +87,6 @@ export class AngularCalendarComponent {
     {
       // V jedynie string, nie da rady templatki
       label: "<span>Usuń</span>",
-      a11yLabel: 'Delete',
       onClick: ({ event }: { event: CalendarEvent }): void => {
         this.events = this.events.filter((iEvent) => iEvent !== event);
         this.handleEvent('Deleted', event);
@@ -155,8 +154,7 @@ export class AngularCalendarComponent {
       }
       this.viewDate = date;
     }
-    console.log(date)
-    // miejsce na otwarcie modalu dodającego z wybraną klikniętą datą
+    // możliwe miejsce na otwarcie modalu dodającego z wybraną klikniętą datą
   }
 
   eventTimesChanged({
