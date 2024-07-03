@@ -24,8 +24,9 @@ import {
   CalendarModule,
   CalendarView,
 } from 'angular-calendar';
-import { JsonPipe, NgIf, NgSwitch, NgSwitchCase } from '@angular/common';
+import { JsonPipe, NgIf, NgStyle, NgSwitch, NgSwitchCase } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 
 const colors = {
   red: {
@@ -53,7 +54,9 @@ const colors = {
     CalendarModule,
     NgIf,
     NzIconModule,
-    JsonPipe
+    JsonPipe,
+    NzCalendarModule,
+    NgStyle
   ],
   templateUrl: './angular-calendar.component.html',
   styleUrl: './angular-calendar.component.scss',

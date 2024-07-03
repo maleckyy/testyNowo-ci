@@ -30,3 +30,17 @@
     font-size: 17px;
   }
 }
+.calendars-wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+
+  .mini-calendar {
+    flex: 1;
+    max-width: 300px;
+  }
+
+  .big-calendar {
+    flex: 2;
+  }
+}
