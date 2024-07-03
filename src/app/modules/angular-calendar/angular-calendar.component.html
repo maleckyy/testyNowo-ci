@@ -15,16 +15,17 @@
       <p><a href="https://mattlewis-github.com/angular-calendar/docs/index.html#getting-started" target="_blank">DOKS</a></p>
       <p><a href="https://www.npmjs.com/package/angular-calendar-scheduler?activeTab=readme" target="_blank">scheduler mozliwy do dodania</a></p>
     </nz-collapse-panel>
+    <nz-collapse-panel nzHeader="OPIS FUNC">
+      <p>kalendarz mini i duży są połączone, wybranie na małym odrazu ustawia tez na duzym</p>
+    </nz-collapse-panel>
   </nz-collapse>
-
 
   <div class="calendars-wrapper mt-4">
     <div class="mini-calendar" [ngStyle]="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px' }">
       <nz-calendar
         [nzFullscreen]="false"
+        (nzSelectChange)="onValueChange($event)"
         ></nz-calendar>
-        <!-- (nzPanelChange)="onPanelChange($event)" -->
-        <!-- (nzSelectChange)="onValueChange($event)" -->
     </div>
 
 
@@ -110,7 +111,7 @@
           [refresh]="refresh"
           [activeDayIsOpen]="activeDayIsOpen"
           (dayClicked)="dayClicked($event.day)"
-          (eventClicked)="handleEvent('Clicked', $event.event)"
+          (eventClicked)="handleEvent('kliks', $event.event)"
           (eventTimesChanged)="eventTimesChanged($event)"
           [headerTemplate]="headerTemp"
         >
@@ -136,10 +137,12 @@
       </div>
     </div>
   </div>
-
-
-
 </div>
+
+
+<p>dla rocznego jedynie widze opcje w nz-callendar mode = year</p>
+<nz-calendar nzMode="year" ></nz-calendar>
+
 
 <!-- temp do month -->
 <ng-template #headerTemp>
@@ -153,6 +156,8 @@
     <div class="header-title">Sobota</div>
   </div>
 </ng-template>
+
+
 
 <!-- bootstrapowy modal do wyswietlania -->
 <ng-template #modalContent let-close="close">

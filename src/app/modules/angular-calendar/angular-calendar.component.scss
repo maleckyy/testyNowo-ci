@@ -44,3 +44,7 @@
     flex: 2;
   }
 }
+
+:host ::ng-deep .ant-picker-calendar-mode-switch {
+  display: none;
+}

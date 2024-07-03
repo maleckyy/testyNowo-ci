@@ -181,6 +181,7 @@ export class AngularCalendarComponent {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
+    console.log(action)
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
   }
@@ -212,5 +213,16 @@ export class AngularCalendarComponent {
 
   closeOpenMonthViewDay() {
     this.activeDayIsOpen = false;
+  }
+
+  /*
+    DLA NZ-CALENDAR MINI
+  */
+  onValueChange(value: Date): void {
+    console.log(`Current value: ${value}`);
+
+    // VIEWDATE TO ZMIENNA CO ODPOWIADA ZA WYSWIETLENIE WYDARZEN Z DNIA WYBRANEGO, DZIAŁA DLA DUŻEGO I MAŁEGO
+    this.viewDate = value
+    this.activeDayIsOpen = true
   }
 }
